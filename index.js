@@ -8,6 +8,7 @@ morgan.token("body", (request, response) => {
 
 const app = express()
 
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(cors());
 app.use(morgan(':method :url :status :response-time ms - Body: :body'));
@@ -29,10 +30,6 @@ let notes = [
         important: true
     }
 ]
-
-app.get("/", (request, response) => {
-    response.send('<h1>Hello World!</h1>');
-})
 
 app.get('/api/notes', (request, response) => {
     response.json(notes);
